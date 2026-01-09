@@ -149,7 +149,42 @@ $ git add conflict.txt & git commit
 ```
 <img width="565" height="235" alt="3-1" src="https://github.com/user-attachments/assets/dfff51cc-1145-49be-a572-5d25c00a59eb" />
 
-### 🔍 유용한 설정 및 팁
+### Git Flow 실습
+```bash
+$ git checkout -b develop
+$ git checkout -b feature/login develop
+$ echo "로그인 기능" > login.txt
+$ git add . && git commit -m "feat: 로그인 추가"
+
+# Develop으로 merge
+$ git checkout develop
+$ git merge feature/login --no-ff
+
+# Release 브랜치
+$ git checkout -b release/1.0.0 develop
+$ echo "1.0.0" > version.txt
+$ git add . && git commit -m "chore: 버전 1.0.0"
+
+# Main으로 merge
+$ git checkout main
+$ git merge release/1.0.0 --no-ff
+$ git tag v1.0.0
+
+# Hotfix
+$ git checkout -b hotfix/critical-bug main
+$ echo "버그 수정" > bugfix.txt
+$ git add . && git commit -m "fix: 긴급 버그 수정"
+
+$ git checkout main
+$ git merge hotfix/critical-bug
+$ git checkout develop
+$ git merge hotfix/critical-bug
+
+$ git branch -d feature/login
+$ git branch -d release/1.0.0
+$ git branch -d hotfix/critical-bug
+```
+## 🔍 유용한 설정 및 팁
 ```bash
 $ git branch -m master main 						# 브랜치명 변경
 $ git branch --set-upstream-to=origin/main main 	# 자동 업스트림 연결
