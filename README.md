@@ -147,6 +147,7 @@ $ cat conflict.txt
 편집기에서 직접 conflict.txt 수정 후 
 $ git add conflict.txt & git commit
 ```
+<img width="565" height="235" alt="3-1" src="https://github.com/user-attachments/assets/dfff51cc-1145-49be-a572-5d25c00a59eb" />
 
 ### 🔍 유용한 설정 및 팁
 ```bash
@@ -154,5 +155,5 @@ $ git branch -m master main 						# 브랜치명 변경
 $ git branch --set-upstream-to=origin/main main 	# 자동 업스트림 연결
 $ git log --oneline --graph --all 				
 $ git log --oneline --graph --all --decorate		# 히스토리 확인
-$git ls-tree branch_name --name-only				# 브랜치에 이동하지 않고, 파일 구조를 확인하는 명령어
+$ git ls-tree branch_name --name-only				# 브랜치에 이동하지 않고, 파일 구조를 확인하는 명령어
 ```
