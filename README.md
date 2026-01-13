@@ -306,6 +306,10 @@ $ git diff --cached --name-only
 - revert: 커밋한 내용이 오류가 있어 되돌린다는 커밋을 추가하고 해당 커밋전으로 파일을 되돌리기!
 - restore: 커밋한 내용으로 되돌리기!
 
+### Stash, Cherry-pick, Tag
+
+```bash
+```
 
 ## 💡 유용한 설정 및 팁
 ```bash
