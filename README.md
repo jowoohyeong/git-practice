@@ -307,9 +307,54 @@ $ git diff --cached --name-only
 - restore: 커밋한 내용으로 되돌리기!
 
 ### Stash, Cherry-pick, Tag
+```bash
+# 새로운 브랜치 생성 및 이동
+$ git checkout -b feature-branch
+
+# feature-branch 체리피크용 커밋 만들기
+$ echo "special feature code" > feature.txt
+$ git add feature.txt
+$ git commit -m "Feat: special function"
+
+$ git checkout main		# 메인 브랜치로 이동
+
+# main 작업 중인 상태 만들기 (커밋 안 함)
+$ echo "working on main..." > wip.txt
+$ git add wip.txt
+
+# 2. stash 로 임시 저장, "작업 중이었던 내용 기록"
+$ git stash save "main branch work in progress"
+$ git stash list		# 3. stash 목록 확인
+$ git status 			# working directory 확인
+```
+
+- stash 로 임시저장했을 때와 안 했을 때 브랜치 이동 차이
+<img width="550" height="336" alt="image" src="https://github.com/user-attachments/assets/f71af163-cff3-4185-8e4c-59b907505309" />
 
 ```bash
+# feature-branch의 마지막 커밋 해시 확인
+$ git log feature-branch --oneline -n 1
+
+# 체리피크 실행 (해시값 자리에 본인의 코드를 넣으세요)
+$ git cherry-pick [여기에_해시값_입력]
+
+# 확인 (메인 브랜치에 해당 커밋이 합쳐졌는지 확인)
+$ git log --oneline -n 3
+
+# 태그 붙이고 push
+$ git tag -a v1.1.0 -m "Cherry-picked feature and restored work"
+$ git push
+
+$ git branch -d feature-branch
 ```
+💡 정리
+- stash 의 사용 목적은 작업 공간을 임시 보관해두어, 깨끗하게 만드는 명령어
+  - 다른 기능의 버그 수정을 위해 현재 작업 공간 비우기
+  - 잘못된 브랜치에서 작업했을 때
+  - Pull 받기전 충돌 방지
+- cherry-pick은 내 작업 환경에 다른 브랜치의 특정 커밋을 복제하는 명령어
+  - 특정 기능 먼저 배포
+  - 실수로 커밋한 커밋 복구
 
 ## 💡 유용한 설정 및 팁
 ```bash
